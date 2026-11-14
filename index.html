@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ibrahim Creates</title>
 <meta name="description" content="A year of travel in photos by Ibrahim Benkhedda: Baltimore, New York, Paris, Morocco and sports.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -202,6 +202,115 @@
     position: absolute; right: 22px; top: 22px; background: #fff; color: #101820; border: 2px solid #101820;
     font: 600 0.85rem var(--text); padding: 4px 12px; border-radius: 999px; cursor: pointer;
   }
+
+  /* ================= All photos ================= */
+  html { -webkit-text-size-adjust: 100%; }
+  body { overflow-x: hidden; }
+  .allp .chips { scroll-margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 40px; }
+  .chip {
+    font: 600 0.95rem var(--text); cursor: pointer; min-height: 44px; padding: 8px 18px;
+    border-radius: 999px; border: 2px solid var(--pfg); background: transparent; color: var(--pfg);
+    white-space: nowrap;
+  }
+  .chip:hover { background: color-mix(in srgb, var(--pfg) 16%, transparent); }
+  .chip[aria-pressed="true"] { background: var(--pfg); color: var(--pbg); }
+  .allgrid { column-count: 3; column-gap: 16px; }
+  .tilebtn {
+    display: block; position: relative; width: 100%; margin: 0 0 16px; padding: 0; border: 0;
+    background: color-mix(in srgb, var(--pbg) 85%, var(--pfg)); cursor: zoom-in;
+    break-inside: avoid; border-radius: 2px; overflow: hidden; min-height: 80px;
+  }
+  .tilebtn[hidden], .lb-btn[hidden] { display: none !important; }
+  .tilebtn img { width: 100%; height: auto; display: block; }
+  .tilebtn .tl {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 12px 10px; text-align: left;
+    background: linear-gradient(transparent, rgba(0,0,0,.72)); color: #fff; font: 600 0.9rem var(--text);
+    opacity: 0; transition: opacity .2s;
+  }
+  .tilebtn:hover .tl, .tilebtn:focus-visible .tl { opacity: 1; }
+  @media (hover: none) { .tilebtn .tl { display: none; } }
+  .allcount { margin: 0 0 24px; color: var(--pacc); font-weight: 600; }
+
+  /* Photo viewer */
+  .lb {
+    position: fixed; inset: 0; z-index: 100; display: flex;
+    background: #070B0F; color: #F2F6F8;
+  }
+  .lb-stage {
+    position: relative; flex: 1 1 auto; min-width: 0; display: flex; align-items: center; justify-content: center;
+    padding: 64px 80px; touch-action: pan-y;
+  }
+  .lb-stage img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; -webkit-user-select: none; user-select: none; }
+  .lb-cap { flex: 0 0 360px; overflow-y: auto; padding: 80px 32px 40px; border-left: 1px solid #26323B; }
+  .lb-cap h3 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 2.2rem; line-height: 1; margin: 0 0 16px; }
+  .lb-cap p { margin: 0 0 14px; font-size: 1rem; }
+  .lb-cap .meta { color: #FFD98A; font-weight: 600; }
+  .lb-btn {
+    position: absolute; width: 48px; height: 48px; border-radius: 50%; border: 2px solid #F2F6F8;
+    background: rgba(16,24,32,.85); color: #F2F6F8; font: 700 1.5rem/1 var(--text); cursor: pointer;
+    display: grid; place-items: center; padding: 0;
+  }
+  .lb-btn:hover { background: #F2F6F8; color: #101820; }
+  .lb-close { top: 14px; right: 14px; z-index: 2; }
+  .lb-prev { left: 14px; top: 50%; margin-top: -24px; }
+  .lb-next { right: 14px; top: 50%; margin-top: -24px; }
+  .lb-count { position: absolute; top: 26px; left: 22px; font-weight: 600; color: #B6C3CC; }
+  @media (prefers-reduced-motion: no-preference) {
+    .tilebtn img { transition: transform .35s; }
+    .tilebtn:hover img { transform: scale(1.03); }
+  }
+
+  /* Hero button next to Instagram */
+  .about .ig { margin: 0 10px 12px 0; }
+
+  /* ================= Mobile ================= */
+  @media (max-width: 900px) {
+    .allgrid { column-count: 2; }
+    .lb { flex-direction: column; }
+    .lb-stage { flex: 1 1 0; padding: 60px 12px 8px; min-height: 0; }
+    .lb-cap { flex: 0 0 auto; max-height: 42%; border-left: 0; border-top: 1px solid #26323B; padding: 16px 20px calc(24px + env(safe-area-inset-bottom, 0px)); }
+    .lb-cap h3 { font-size: 1.7rem; margin-bottom: 10px; }
+    .lb-btn { width: 44px; height: 44px; }
+    .lb-prev, .lb-next { margin-top: -22px; }
+    .lb-prev { left: 8px; } .lb-next { right: 8px; }
+    .lb-count { top: 24px; left: 16px; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 1rem; line-height: 1.6; }
+    .hero { padding: 28px 18px 56px; }
+    .hero h1 { margin-bottom: 28px; }
+    .hero-row { gap: 24px; margin-bottom: 48px; }
+    .hero-row .hero-text { flex-basis: 100%; }
+    .hero-row .about p { font-size: 1.05rem; }
+    .hero-row .me { flex: 1 1 100%; max-width: none; }
+    .ig { padding: 12px 20px; }
+    .panel { padding: 56px 18px 64px; }
+    .panel h2 { font-size: clamp(2.8rem, 14vw, 5rem); overflow-wrap: anywhere; }
+    .panel .when { margin: 14px 0 40px; font-size: 1.05rem; }
+    .print .paper { padding: 8px; }
+    .shot, .shot.port, .shot.flip, .shot.port.flip { gap: 18px; margin-bottom: 48px; }
+    .shot.port .print { max-width: none; }
+    .words h3 { font-size: 1.7rem; margin-bottom: 10px; }
+    .grid .print { margin-bottom: 22px; }
+    .allgrid { column-gap: 10px; }
+    .tilebtn { margin-bottom: 10px; }
+    .allp .chips {
+      flex-wrap: nowrap; overflow-x: auto; margin: 0 -18px 28px; padding: 0 18px 4px;
+      scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    }
+    .allp .chips::-webkit-scrollbar { display: none; }
+    .chip { flex: 0 0 auto; }
+    footer { padding: 56px 18px calc(120px + env(safe-area-inset-bottom, 0px)); }
+    .dock {
+      left: 10px; right: 10px; transform: none; max-width: none;
+      bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+      scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    }
+    .dock::-webkit-scrollbar { display: none; }
+    .dock ul { width: max-content; margin: 0 auto; }
+    .dock a { padding: 11px 14px; }
+    #toolbar { padding: 10px 12px; }
+  }
 </style>
 </head>
 <body class="">
@@ -214,12 +323,11 @@
       <div class="about">
         <p id="about-text" data-ph="Write something about yourself">Through the lens of Ibrahim Benkhedda, documenting life, culture, architecture, and everyday perspectives from around the world. Capturing the stories behind familiar places, and the beauty found in ordinary moments. From city streets and distant landscapes to the people, structures, and environments that shape our world, each photograph offers a different perspective.</p>
         <a class="ig" href="https://www.instagram.com/ibrahimcreates_" target="_blank" rel="noopener">Follow @ibrahimcreates_</a>
+        <a class="ig" href="#all">View all photos</a>
       </div>
       </div>
       <figure class="print me" id="me" hidden=""></figure>
     </div>
-    <h2 class="route-title" style="font-size:1rem;font-family:var(--text)">The trips, in order</h2>
-    <ol class="route" id="route"></ol>
   </section>
 
   <div id="panels"></div>
@@ -642,7 +750,6 @@ const PALETTES = [
 ];
 
 let editing = false;
-const routeEl = document.getElementById("route");
 const dockEl = document.getElementById("dock");
 const panelsEl = document.getElementById("panels");
 
@@ -717,7 +824,7 @@ function drawPhoto(paper) {
   paper.replaceChildren();
   if (item.src) {
     const img = document.createElement("img");
-    img.src = item.src; img.alt = item.alt || item.title || "Photo"; img.loading = "lazy";
+    img.src = item.src; img.alt = item.alt || item.title || "Photo"; img.loading = "eager"; img.decoding = "async";
     paper.appendChild(img);
   } else {
     const t = el("div", "tile " + (item.orient === "port" ? "port" : "land"), item.title || "Add a photo");
@@ -796,17 +903,10 @@ function gridFigure(p, item) {
 }
 
 function render() {
-  routeEl.replaceChildren(); dockEl.replaceChildren(); panelsEl.replaceChildren();
+  dockEl.replaceChildren(); panelsEl.replaceChildren();
 
   PLACES.forEach(p => {
     const dli = el("li"); const da = el("a", "", p.name); da.href = "#" + p.id; dli.appendChild(da); dockEl.appendChild(dli);
-
-    if (!p.noRoute) {
-      const li = el("li"); const a = el("a"); a.href = "#" + p.id;
-      const dot = el("span", "dot"); dot.style.setProperty("--c", p.dot || p.bg);
-      a.appendChild(dot); a.appendChild(el("b", "", p.name)); a.appendChild(el("small", "", p.short || ""));
-      li.appendChild(a); routeEl.appendChild(li);
-    }
 
     const sec = el("section", "panel"); sec.id = p.id; sec.setAttribute("aria-labelledby", p.id + "-h");
     sec.style.setProperty("--pbg", p.bg); sec.style.setProperty("--pfg", p.fg); sec.style.setProperty("--pacc", p.acc);
@@ -921,6 +1021,7 @@ function render() {
 
     sec.appendChild(inner); panelsEl.appendChild(sec);
   });
+  renderAll();
   renderMe();
   observe();
 }
@@ -939,6 +1040,182 @@ function renderMe() {
   me.appendChild(makePaper(PROFILE, { removable: false, onRemove: () => { PROFILE.src = ""; scheduleDraft(); renderMe(); } }));
 }
 function drawAgain(fig) { const paper = fig.querySelector(".paper"); if (paper) drawPhoto(paper); }
+
+/* ---------- All photos + photo viewer ---------- */
+let allFilter = "all";
+
+function collectPhotos() {
+  const out = [];
+  PLACES.forEach(p => {
+    (p.shots || []).forEach(s => {
+      if (!s.src) return;
+      out.push({
+        pid: p.id, src: s.src, title: s.title || p.name,
+        alt: s.alt || s.title || p.name,
+        text: (s.text || []).map(t => String(t).trim()).filter(Boolean),
+        meta: (s.meta || "").trim()
+      });
+    });
+    (p.grid || []).forEach((g, i) => {
+      if (!g.src) return;
+      out.push({
+        pid: p.id, src: g.src, title: g.title || (p.name + " " + (i + 1)),
+        alt: g.alt || g.title || p.name,
+        text: g.caption ? [String(g.caption).trim()] : [],
+        meta: p.name
+      });
+    });
+  });
+  return out;
+}
+
+function renderAll() {
+  const photos = collectPhotos();
+
+  const dli = el("li"); const da = el("a", "", "All photos"); da.href = "#all";
+  dli.appendChild(da); dockEl.appendChild(dli);
+
+  const sec = el("section", "panel allp"); sec.id = "all"; sec.setAttribute("aria-labelledby", "all-h");
+  sec.style.setProperty("--pbg", "var(--ink)");
+  sec.style.setProperty("--pfg", "var(--bg)");
+  sec.style.setProperty("--pacc", "var(--line)");
+  const inner = el("div", "panel-in");
+  const h2 = el("h2", "", "All photos"); h2.id = "all-h";
+  inner.appendChild(h2);
+  inner.appendChild(el("p", "when", "Every photo in one place. Pick a gallery, then tap a photo to see it bigger."));
+
+  const places = PLACES.filter(p => photos.some(x => x.pid === p.id));
+  if (allFilter !== "all" && !places.some(p => p.id === allFilter)) allFilter = "all";
+
+  const chips = el("div", "chips"); chips.setAttribute("role", "group"); chips.setAttribute("aria-label", "Filter photos by gallery");
+  const grid = el("div", "allgrid");
+  const count = el("p", "allcount");
+
+  const tiles = photos.map(ph => {
+    const b = el("button", "tilebtn"); b.type = "button"; b.dataset.pid = ph.pid;
+    b.setAttribute("aria-label", "View " + ph.title);
+    const img = document.createElement("img");
+    img.src = ph.src; img.alt = ph.alt; img.decoding = "async";
+    b.appendChild(img);
+    b.appendChild(el("span", "tl", ph.title));
+    b.addEventListener("click", () => {
+      const visible = photos.filter(x => allFilter === "all" || x.pid === allFilter);
+      openLightbox(visible, visible.indexOf(ph), b);
+    });
+    grid.appendChild(b);
+    return b;
+  });
+
+  function apply() {
+    let n = 0;
+    tiles.forEach(t => { const show = allFilter === "all" || t.dataset.pid === allFilter; t.hidden = !show; if (show) n++; });
+    chips.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", String(c.dataset.pid === allFilter)));
+    count.textContent = n + (n === 1 ? " photo" : " photos");
+  }
+  [{ id: "all", name: "All", n: photos.length }].concat(places.map(p => ({ id: p.id, name: p.name, n: photos.filter(x => x.pid === p.id).length })))
+    .forEach(c => {
+      const b = el("button", "chip", c.name + " (" + c.n + ")"); b.type = "button"; b.dataset.pid = c.id;
+      b.addEventListener("click", () => { allFilter = c.id; apply(); chips.scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth", block: "start" }); });
+      chips.appendChild(b);
+    });
+
+  inner.appendChild(chips); inner.appendChild(count); inner.appendChild(grid);
+  if (!photos.length) inner.appendChild(el("p", "none", "Photos will show up here as soon as they are added to a gallery."));
+  apply();
+  sec.appendChild(inner); panelsEl.appendChild(sec);
+}
+
+let lbCleanup = null;
+function closeLightbox() { if (lbCleanup) { lbCleanup(); lbCleanup = null; } }
+
+function openLightbox(list, start, opener) {
+  closeLightbox();
+  if (!list.length) return;
+  let idx = Math.max(0, start);
+
+  const lb = el("div", "lb"); lb.setAttribute("role", "dialog"); lb.setAttribute("aria-modal", "true"); lb.setAttribute("aria-label", "Photo viewer");
+  const stage = el("div", "lb-stage");
+  const img = document.createElement("img");
+  const cap = el("div", "lb-cap");
+  const count = el("div", "lb-count");
+  const mk = (cls, label, glyph, fn) => { const b = el("button", "lb-btn " + cls, glyph); b.type = "button"; b.setAttribute("aria-label", label); b.addEventListener("click", fn); return b; };
+  const closeB = mk("lb-close", "Close photo viewer", "\u00D7", closeLightbox);
+  const prevB = mk("lb-prev", "Previous photo", "\u2039", () => go(-1));
+  const nextB = mk("lb-next", "Next photo", "\u203A", () => go(1));
+  stage.appendChild(img); stage.appendChild(prevB); stage.appendChild(nextB);
+  lb.appendChild(stage); lb.appendChild(cap); lb.appendChild(count); lb.appendChild(closeB);
+
+  function show() {
+    const it = list[idx];
+    img.src = it.src; img.alt = it.alt;
+    cap.replaceChildren();
+    cap.appendChild(el("h3", "", it.title));
+    it.text.forEach(t => cap.appendChild(el("p", "", t)));
+    if (it.meta) cap.appendChild(el("p", "meta", it.meta));
+    cap.scrollTop = 0;
+    count.textContent = (idx + 1) + " / " + list.length;
+    prevB.hidden = nextB.hidden = list.length < 2;
+  }
+  function go(d) { idx = (idx + d + list.length) % list.length; show(); }
+
+  function onKey(e) {
+    if (e.key === "Escape") { closeLightbox(); }
+    else if (e.key === "ArrowLeft") { go(-1); }
+    else if (e.key === "ArrowRight") { go(1); }
+    else if (e.key === "Tab") {
+      const f = [...lb.querySelectorAll("button:not([hidden])")];
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }
+  let sx = null, sy = null;
+  stage.addEventListener("pointerdown", e => { if (e.target === img || e.target === stage) { sx = e.clientX; sy = e.clientY; } });
+  stage.addEventListener("pointerup", e => {
+    if (sx === null) return;
+    const dx = e.clientX - sx, dy = e.clientY - sy; sx = sy = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(dx < 0 ? 1 : -1);
+  });
+  stage.addEventListener("pointercancel", () => { sx = sy = null; });
+
+  const prevOverflow = document.body.style.overflow;
+  document.body.style.overflow = "hidden";
+  document.addEventListener("keydown", onKey);
+  document.body.appendChild(lb);
+  show();
+  closeB.focus();
+
+  lbCleanup = () => {
+    document.removeEventListener("keydown", onKey);
+    lb.remove();
+    document.body.style.overflow = prevOverflow;
+    if (opener && document.contains(opener)) opener.focus();
+  };
+}
+
+
+/* ---------- Jump links: smooth glide, lands in the right place ---------- */
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+function glideTo(target) {
+  const smooth = reduceMotion.matches ? "auto" : "smooth";
+  target.scrollIntoView({ behavior: smooth, block: "start" });
+  // After the glide, nudge if the page settled a little off (photos finishing sizing).
+  setTimeout(() => {
+    if (Math.abs(target.getBoundingClientRect().top) > 4) target.scrollIntoView({ behavior: smooth, block: "start" });
+  }, reduceMotion.matches ? 50 : 1100);
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest && e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const id = a.getAttribute("href").slice(1);
+  if (!id || id === "edit") return;
+  const target = document.getElementById(id);
+  if (!target) return;
+  e.preventDefault();
+  // Make sure every photo has its real size first, so the glide aims at the right spot.
+  Promise.all([...document.images].map(i => i.decode ? i.decode().catch(() => {}) : null)).then(() => glideTo(target));
+});
 
 /* ---------- Dock highlight ---------- */
 let io;
@@ -1017,6 +1294,7 @@ async function exportSite() {
   const clone = document.documentElement.cloneNode(true);
   ["#route", "#dock", "#panels", "#me"].forEach(q => { const n = clone.querySelector(q); if (n) n.replaceChildren(); });
   const tb = clone.querySelector("#toolbar"); if (tb) tb.remove();
+  clone.querySelectorAll(".lb").forEach(n => n.remove());
   const meEl = clone.querySelector("#me"); if (meEl) meEl.setAttribute("hidden", "");
   clone.querySelectorAll("[contenteditable]").forEach(n => n.removeAttribute("contenteditable"));
   clone.querySelector("body").className = "";
